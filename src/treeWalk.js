@@ -1,5 +1,5 @@
 const { exec } = require('child_process')
-const { resolve, basename } = require('path')
+const { resolve, basename, dirname } = require('path')
 
 function treeWalk (dir, callback, options) {
   const ignores = options.ignores
@@ -30,7 +30,7 @@ function treeWalk (dir, callback, options) {
     filesArr.map((f, key) => {
       let filePath = f.split(' /')[1] && '/' + f.split(' /')[1]
       if (filePath) {
-        addResult(basename(filePath), filePath)
+        addResult(basename(filePath), dirname(filePath))
       }
     })
 
