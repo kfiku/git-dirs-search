@@ -1,5 +1,5 @@
 const { stat, readdir } = require('fs')
-const { resolve } = require('path')
+const { resolve, dirname } = require('path')
 
 /**
  * @param {string} dir
@@ -42,7 +42,7 @@ function nodeWalk (dir, callback, options, depth) {
           callback(null, results)
         }
       } else {
-        addResult(filename, filePath)
+        addResult(filename, dirname(filePath))
 
         if (depth === 0) {
           if (!--pending) {
@@ -60,7 +60,7 @@ function nodeWalk (dir, callback, options, depth) {
               nodeWalk(filePath, nextCallback, options, depth - 1)
             } else {
               // console.log(filename, name);
-              addResult(filename, filePath)
+              addResult(filename, dirname(filePath))
 
               if (!--pending) {
                 callback(null, results)

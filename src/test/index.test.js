@@ -116,6 +116,27 @@ test('gitDirsSearch should work with maxDepth 1 with spep', (done) => {
   }, { maxDepth: 1, step: mockStep })
 })
 
+test('gitDirsSearch should work with maxDepth 1 with spep', (done) => {
+  const mockStep = jest.fn()
+
+  gitDirsSearch(join(__dirname, 'testDir', 'a'), (error, data) => {
+    expect(error).toBeNull()
+    const dataRelative = data.map(d => d.split('testDir/')[1])
+    const expectedData = [
+      'a'
+    ]
+    expect(dataRelative).toEqual(expectedData)
+    expect(mockStep.mock.calls.length).toBe(1)
+    done()
+  }, {
+    maxDepth: 1,
+    step: (dir) => {
+      expect(dir.split('testDir/')[1]).toEqual('a')
+      mockStep()
+    }
+  })
+})
+
 test('gitDirsSearch return error on wrong dir', (done) => {
   gitDirsSearch('wrongDir', (error, data) => {
     expect(error).toBeDefined()
@@ -125,7 +146,7 @@ test('gitDirsSearch return error on wrong dir', (done) => {
 })
 
 /** FORCE NODE */
-test('gitDirsSearch should work with default values', (done) => {
+test('gitDirsSearch should work with force node', (done) => {
   gitDirsSearch(join(__dirname, 'testDir'), (error, data) => {
     expect(error).toBeNull()
     const dataRelative = data.map(d => d.split('testDir/')[1])
@@ -139,6 +160,23 @@ test('gitDirsSearch should work with default values', (done) => {
     expect(dataRelative).toEqual(expectedData)
     done()
   }, { forceNode: true })
+})
+
+test('gitDirsSearch should work with force node and walk', (done) => {
+  gitDirsSearch(join(__dirname, 'testDir/a'), (error, data) => {
+    expect(error).toBeNull()
+    const dataRelative = data.map(d => d.split('testDir/')[1])
+    const expectedData = [
+      'a'
+    ]
+    expect(dataRelative).toEqual(expectedData)
+    done()
+  }, {
+    forceNode: true,
+    step: (dir) => {
+      expect(dir.split('testDir/')[1]).toEqual('a')
+    }
+  })
 })
 
 test('gitDirsSearch should work with maxDepth 2', (done) => {
@@ -184,7 +222,7 @@ test('gitDirsSearch should work with maxDepth 1 with spep', (done) => {
     expect(dataRelative).toEqual(expectedData)
     expect(mockStep.mock.calls.length).toBe(3)
     done()
-  }, { maxDepth: 1, forceNode: true , step: mockStep })
+  }, { maxDepth: 1, forceNode: true, step: mockStep })
 })
 
 test('gitDirsSearch return error on wrong dir', (done) => {
