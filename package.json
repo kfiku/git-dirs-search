@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest",
+    "lint": "standard src/*.js",
+    "test": "npm run lint && jest --coverage",
     "test:watch": "jest --watchAll",
     "test:watch:cov": "jest --watchAll --coverage",
     "lint": "standard"
@@ -25,5 +26,8 @@
     "rimraf": "^2.6.2",
     "standard": "^10.0.3",
     "touch": "^3.1.0"
+  },
+  "dependencies": {
+    "coveralls": "^3.0.0"
   }
 }
