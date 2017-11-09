@@ -19,6 +19,7 @@ function formatOutput (input, name) {
  * @param {string} dir
  * @param {function} callback
  * @param {{ignores: string[], step: function, name: string, maxDepth: number, forceNode: bool}} options
+ * @return {string[]}
  */
 function gitDirsSearch (dir, callback, options) {
   const opts = Object.assign({}, defaultOptions, options)
