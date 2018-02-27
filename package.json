@@ -7,8 +7,7 @@
     "lint": "standard src/*.js",
     "test": "npm run lint && jest --coverage",
     "test:watch": "jest --watchAll",
-    "test:watch:cov": "jest --watchAll --coverage",
-    "lint": "standard"
+    "test:watch:cov": "jest --watchAll --coverage"
   },
   "repository": {
     "type": "git",
