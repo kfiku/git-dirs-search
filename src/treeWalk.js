@@ -15,9 +15,9 @@ function treeWalk (dir, callback, options) {
   }
 
   const fullDir = resolve(dir)
-  const include = '-P "' + name + '"'
+  const include = '-P "\\' + name + '"'
   const exclude = '-I "' + ignores.join('|') + '"'
-  const grep = ' | grep -E "' + name + '$"'
+  const grep = ' | grep -E "\\' + name + '$"'
 
   const cmd = `tree ${fullDir} -d -a -f -L ${depth} ${include} ${exclude} ${grep}`
   // console.log(cmd)
