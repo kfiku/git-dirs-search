@@ -64,6 +64,9 @@ Im open to contributors :).
 
 ## Release History
 
+#### 2017-11-09 v1.1.1
+ * fix wrong options doc-block
+
 #### 2017-11-09 v1.0.3
  * first stable version
 
