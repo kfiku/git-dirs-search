@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "coveralls": "^3.0.13",
-    "snyk": "^1.320.2"
+    "snyk": "^1.320.3"
   },
   "snyk": true
 }
